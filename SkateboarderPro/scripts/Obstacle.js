@@ -26,18 +26,29 @@ export const Diagnostics = require('Diagnostics');
 //Adding obstacleUpdate to the timer so it'll update over time;
 const intervalTimer = Time.setInterval(obstacleUpdate, calculationSpeed);
 
+var obstacleSpeed = 0.005;
 var previousValue = -0.15;
+var minX = -.1;
+var maxX = .1;
 
 function obstacleUpdate() {
     //Example code for retrieving an object
     Promise.all([Scene.root.findFirst('Obstacle'),]).then(function (results) {
         const obstacle = results[0];
-        previousValue += 0.002;
-        obstacle.transform.x = 0;
+        previousValue += obstacleSpeed;
+
+        if (previousValue > 0.15) {
+            obstacle.transform.x = getRandomFloat(minX, maxX);
+            previousValue = -0.15;
+        }
+
         obstacle.transform.y = 0;
         obstacle.transform.z = previousValue;
-        if (previousValue > 0.15) previousValue = -0.15;
     })
+}
+
+function getRandomFloat(min, max) {
+    return Math.random() * (max - min) + min;
 }
 
 // To use variables and functions across files, use export/import keyword

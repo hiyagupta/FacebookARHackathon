@@ -81,7 +81,7 @@ function getRandomFloat(min, max) {
 const DeviceMotion = require('DeviceMotion');
 
 // Locate the plane in the Scene
-const player = Scene.root.find('player');
+const player = Scene.root.find('Player');
 
 // Store a reference to the transform of the plane and the world transform of
 // the DeviceMotion module

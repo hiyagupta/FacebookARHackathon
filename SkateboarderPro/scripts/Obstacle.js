@@ -65,3 +65,30 @@ function getRandomFloat(min, max) {
 
 // To log messages to the console
 // Diagnostics.log('Console message logged from the script.');
+
+//////////////////////////////////////////////////////////////////////////////////////
+//adding DeviceMotionController code from documentation
+
+//==============================================================================
+// The following example demonstrates how to bind device rotation to an object.
+//
+// Project setup:
+// - Insert a plane
+// - Make sure the Device Motion capability is added in the properties
+//==============================================================================
+
+// Load in the required modules
+const DeviceMotion = require('DeviceMotion');
+
+// Locate the plane in the Scene
+const plane = Scene.root.find('player');
+
+// Store a reference to the transform of the plane and the world transform of
+// the DeviceMotion module
+const planeTransform = player.transform;
+const deviceWorldTransform = DeviceMotion.worldTransform;
+
+// Bind the rotation of the device to the plane
+planeTransform.rotationX = deviceWorldTransform.rotationX;
+planeTransform.rotationY = deviceWorldTransform.rotationY;
+planeTransform.rotationZ = deviceWorldTransform.rotationZ;

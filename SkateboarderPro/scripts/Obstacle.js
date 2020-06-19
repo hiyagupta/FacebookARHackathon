@@ -32,7 +32,12 @@ var previousValue = -0.15;
 var minX = -.1;
 var maxX = .1;
 
+var dead = Patches.getBooleanValue("dead").lastValue;
+
 function obstacleUpdate() {
+    Diagnostics.log(dead);
+    if (dead == true) return;
+
     //Example code for retrieving an object
     Promise.all([Scene.root.findFirst('Obstacle'),]).then(function (results) {
         const obstacle = results[0];

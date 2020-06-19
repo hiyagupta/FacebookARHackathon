@@ -16,6 +16,7 @@
 // How to load in modules
 const Scene = require('Scene');
 const Time = require('Time');
+const Patches = require('Patches');
 
 //In milliseconds
 const calculationSpeed = 50;
@@ -44,6 +45,7 @@ function obstacleUpdate() {
 
         obstacle.transform.y = 0;
         obstacle.transform.z = previousValue;
+        Patches.setPointValue("obstaclePosition", obstacle.transform.position);
     })
 }
 
@@ -82,6 +84,8 @@ const DeviceMotion = require('DeviceMotion');
 
 // Locate the plane in the Scene
 const player = Scene.root.find('Player');
+
+Patches.setPointValue("playerPosition", player.transform.position);
 
 // Store a reference to the transform of the plane and the world transform of
 // the DeviceMotion module

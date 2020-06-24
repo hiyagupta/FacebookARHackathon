@@ -20,6 +20,12 @@ Promise.all([Scene.root.findFirst('Obstacle')]).then(function (results) {
 
 Time.setInterval(jumpingUpdate, 50);
 
+var score = Patches.getScalarValue("score");
+
+Patches.getScalarValue("score").monitor().subscribe(() => {
+    Scene.root.find("Points").text = score.toString();
+});
+
 function jumpingUpdate() {
     if (playerTransform.y.pinLastValue() != 0) {
         jumping = true;
